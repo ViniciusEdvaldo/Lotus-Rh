@@ -32,8 +32,8 @@ Sinta-se à vontade para contribuir! Você pode fazer isso abrindo issues, suger
 O projeto está em constante evolução, com commits diários, e novas funcionalidades sendo adicionadas regularmente.
 
 📄 Licença
-Este projeto está licenciado sob a MIT License.
+Este projeto está sem lincença, faça oque quiser com ele!
 
 📫 Contato
-Para dúvidas ou sugestões, entre em contato: seu-email@example.com
+Para dúvidas ou sugestões, entre em contato: viniciuspinheiro2806@gmail.com ou (34) 98434-5015
 
