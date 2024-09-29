@@ -2,6 +2,8 @@
 
 **Lotus-Rh** é um projeto em andamento que simula um sistema de gerenciamento de recursos humanos, focando no CRUD (Criar, Ler, Atualizar e Deletar) de vagas e candidatos. O projeto é desenvolvido utilizando **Java Spring Boot** e **MySQL**, visando proporcionar uma experiência prática na gestão de processos seletivos.
 
+Observação: esse codigo tem apenas o back-end, utilizando o padrao mvc, devido a eu nao ter disponibilidade no momento para focar no front-end(view), mas fique a vontade caso queira implementar.
+
 ## 🚀 Funcionalidades
 - **Gerenciamento de Vagas**: 📝 Criação, visualização, edição e remoção de vagas disponíveis.
 - **Gestão de Candidatos**: 👤 Registro, consulta, atualização e exclusão de informações de candidatos.
