@@ -1,1 +1,227 @@
-form vaga
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>| Lotus RH |</title>
+
+    <!-- css -->
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: #343a40;
+            padding: 15px;
+        }
+
+        .navbar .container-fluid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar a.navbar-brand {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        .navbar .navbar-nav {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .navbar .navbar-nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin-right: 15px;
+            padding: 5px 10px;
+        }
+
+        .navbar .navbar-nav a:hover {
+            color: #fff;
+            background-color: #495057;
+            border-radius: 5px;
+        }
+
+        .navbar-toggler {
+            background-color: #fff;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-text {
+            font-size: 0.85em;
+            color: #6c757d;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .footer-copyright {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .navbar-nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #343a40;
+                position: absolute;
+                top: 60px;
+                left: 0;
+            }
+
+            .navbar .navbar-nav a {
+                padding: 15px;
+                border-top: 1px solid #495057;
+            }
+
+            .navbar .navbar-nav.active {
+                display: flex;
+            }
+
+            .navbar-toggler {
+                display: block;
+            }
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleNavbar() {
+            var nav = document.getElementById('navbarNav');
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            } else {
+                nav.classList.add('active');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Lotus RH</a>
+                <button class="navbar-toggler" onclick="toggleNavbar()">☰</button>
+                <div class="navbar-nav" id="navbarNav">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="/vagas">Listar Vagas</a>
+                    <a class="nav-link" href="/cadastrarVaga">Cadastrar Vaga</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Cadastrar Vaga</h1>
+        <br>
+
+        <!-- Mensagem de Validação -->
+        <div th:if="${mensagem}" style="color: green;"> 
+            <p th:text="${mensagem}"></p>
+        </div>
+        <div th:if="${#fields.hasErrors()}" style="color: red;">
+            <p>Verifique os campos</p>
+        </div>
+
+        <form method="post" action="/cadastrarVaga">
+            <div class="form-group">
+                <label for="nome"><b>Nome do cargo:</b></label>
+                <input type="text" id="nome" class="form-control" placeholder="Insira o nome do cargo" name="nome" required>
+                <small class="form-text"><i>* Utilize nomes e termos mais utilizados no mercado.</i></small>
+            </div>
+
+            <div class="form-group">
+                <label for="data"><b>Data de expiração:</b></label>
+                <input type="date" id="data" name="data" class="form-control" required>
+                <small class="form-text"><i>* Data em que a vaga expira.</i></small>
+            </div>
+
+            <div class="form-group">
+                <label for="salario"><b>Salário:</b></label>
+                R$ <input type="number" id="salario" name="salario" class="form-control" required>
+                <small class="form-text"><i>* Utilize valores considerando vírgula e ponto.</i></small>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao"><b>Descrição da vaga:</b></label>
+                <textarea id="descricao" class="form-control" name="descricao" maxlength="254" rows="3" required></textarea>
+                <small class="form-text"><i>* Breve resumo da vaga oferecida.</i></small>
+            </div>
+
+            <button type="submit" class="btn btn-success">Adicionar Vaga</button>
+        </form>
+    </div>
+
+    <div class="footer-copyright">
+        <span class="text-light align-middle">| Lotus Company| - © 2024 </span>
+    </div>
+
+</body>
+
+</html>
