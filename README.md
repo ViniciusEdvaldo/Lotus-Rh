@@ -31,7 +31,7 @@ mvn spring-boot:run
 Sinta-se à vontade para contribuir! Você pode fazer isso abrindo issues, sugerindo melhorias ou enviando pull requests.
 
 📈 Status do Projeto
-O projeto está em constante evolução, com commits diários, e novas funcionalidades sendo adicionadas regularmente.
+O projeto está praticamente pronto, talvez eu lançe novas funcionalidades, como integração de APIs
 
 📄 Licença
 Este projeto está sem lincença, faça oque quiser com ele!
