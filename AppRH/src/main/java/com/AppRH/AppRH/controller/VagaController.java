@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -71,7 +72,7 @@ public class VagaController {
 
     // DELETAR VAGAS
     @RequestMapping("/deletarVaga")
-    public String deletarVaga(long codigo) {
+    public String deletarVaga(@RequestParam("codigo") long codigo) {
         Vaga vaga = vr.findByCodigo(codigo);
         if (vaga != null) {
             vr.delete(vaga);
@@ -88,7 +89,7 @@ public class VagaController {
             attributes.addFlashAttribute("mensagem", "Verifique os campos");
             return "redirect:/vaga/" + codigo; 
         }
-        // Cpf duplicado
+        // CPF duplicado
         if (cr.findByCpf(candidato.getCpf()) != null) {
             attributes.addFlashAttribute("mensagem", "CPF duplicado");
             return "redirect:/vaga/" + codigo; 
@@ -100,7 +101,7 @@ public class VagaController {
         return "redirect:/vaga/" + codigo; 
     }
 
-    // DELETAR CANDIDATO pelo cpf
+    // DELETAR CANDIDATO pelo CPF
     @RequestMapping("/deletarCandidato")
     public String deletarCandidato(String cpf) {
         Candidato candidato = cr.findByCpf(cpf);
@@ -113,9 +114,9 @@ public class VagaController {
     }
 
     // METODOS ATUALIZA VAGA
-    // FORMULARIO EDIÇÃO VAGA
+    // FORMULÁRIO EDIÇÃO VAGA
     @RequestMapping(value = "/editar-vaga", method = RequestMethod.GET)
-    public ModelAndView editarVaga(long codigo) {
+    public ModelAndView editarVaga(@RequestParam("codigo") long codigo) {
         Vaga vaga = vr.findByCodigo(codigo);
         ModelAndView mv = new ModelAndView("vaga/update-vaga");
         mv.addObject("vaga", vaga);
@@ -127,7 +128,7 @@ public class VagaController {
     public String updateVaga(@Valid Vaga vaga, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
             attributes.addFlashAttribute("mensagem", "Verifique os campos");
-            return "redirect:/editar-vaga";
+            return "redirect:/editar-vaga?codigo=" + vaga.getCodigo(); 
         }
         vr.save(vaga);
         attributes.addFlashAttribute("mensagem", "Vaga alterada com sucesso");
